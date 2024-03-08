@@ -20,6 +20,7 @@ def remove_splchars(text,window_size=5):
             pass
         else:
             temp.append(seq)
+        ind+=1
             
     return ".".join(temp)  
     # return res
@@ -35,5 +36,3 @@ def clean(text, window_size=5):
         else:
             ind+=1
     return ".".join(check)
-
-print(remove_splchars("HELLO . BBC. What is. rjkn. nfooie, jlnfnren  jnfiunreun m fhinrengf fjren jknfi4nfof."))
