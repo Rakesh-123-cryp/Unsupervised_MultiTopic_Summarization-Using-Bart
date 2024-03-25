@@ -1,12 +1,22 @@
 import pandas as pd
 import numpy as np
-from nltk.tokenize import (word_tokenize)
-from nltk import WordNetLemmatizer
-#from gensim.models import Word2Vec
-#import gensim.downloader
-#import spacy
-from sklearn.mixture import GaussianMixture
+# from sklearn.mixture import GaussianMixture
+import multiprocessing
+from multiprocessing.pool import MapResult
+from Utils import remove_splchars,clean
+from pyarrow.parquet import ParquetFile
+import pyarrow as pa
 
-df = pd.read_csv("/Users/rakesh/Desktop/cnn_dailymail/train.csv")
-df.drop(["id"], axis=1, inplace=True)
-print(df.describe())
+
+def get_data():
+    data = ParquetFile("paraquet/train.parquet")
+    batch = next(data.iter_batches(batch_size = 1000)) 
+    batch = pa.Table.from_batches([batch]).to_pandas()
+    batch.drop(["id"], axis=1, inplace=True)
+
+    #pool = multiprocessing.Pool()
+    with multiprocessing.Pool(5) as p:
+        batch["article"] = p.map(remove_splchars,batch["article"])
+    
+    
+    return batch
