@@ -1,2 +1,3 @@
-#Unsupervised Multi-Topic Classification and Summarization with BART
+Unsupervised Multi-Topic Classification and Summarization with BART
 
+```pip install -r requirements.txt```
