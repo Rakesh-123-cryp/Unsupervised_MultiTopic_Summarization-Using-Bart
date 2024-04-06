@@ -25,14 +25,17 @@ def remove_splchars(text,window_size=5):
     return ".".join(temp)  
     # return res
 
-def clean(text, window_size=5):
+def clean(text, window_size=6):
     check = text.split(".")
     temp = check
     ind = 0
     while(ind==0):
         seq = check[ind]
+        # print("HELL")
         if len(seq.split())<window_size:
+            # print("HELLo")
             check.remove(seq)
         else:
             ind+=1
     return ".".join(check)
+
