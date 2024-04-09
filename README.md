@@ -9,5 +9,5 @@ pip install -r requirements.txt
 
 - Place this model in ```./pretrained```
 - Place your text in the variable ```text_input```
-- Run the file ```main.py```
+- Run the file ```python3 main.py```
 
